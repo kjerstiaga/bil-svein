@@ -1,226 +1,812 @@
-
-<h2 class="sr-only">Markedsanalyse: BMW 530d 2019 — sammenligning for kjøper i Trondheim</h2>
-
+<!DOCTYPE html>
+<html lang="nb" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Prutemester — strategisk bilkjøp på FINN.no">
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Prutemester</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-.wrap { padding: 1.5rem 0 2rem; }
-.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-secondary); margin: 0 0 0.75rem; }
-.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.tab { padding: 6px 16px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); font-size: 13px; cursor: pointer; color: var(--color-text-secondary); transition: all 0.15s; }
-.tab.active { background: var(--color-background-secondary); border-color: var(--color-border-primary); color: var(--color-text-primary); font-weight: 500; }
-.panel { display: none; }
-.panel.active { display: block; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--sf:#161b22;--sf2:#1c2230;--sf3:#21283a;
+  --ln:rgba(255,255,255,0.07);--ln2:rgba(255,255,255,0.13);
+  --ink:#cdd9eb;--ink2:#7d90a8;--ink3:#465668;
+  --blue:#58a6ff;--bdim:rgba(88,166,255,0.12);
+  --green:#3fb950;--gdim:rgba(63,185,80,0.12);
+  --amber:#e3b341;--adim:rgba(227,179,65,0.12);
+  --red:#f85149;--rdim:rgba(248,81,73,0.12);
+  --purple:#bc8cff;
+  --r:10px;--rsm:6px;--rlg:16px;
+  --fd:'Instrument Serif',Georgia,serif;--fm:'DM Mono',monospace;
+  --sb:env(safe-area-inset-bottom,0px);--st:env(safe-area-inset-top,0px);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--fm);font-size:14px;line-height:1.6;min-height:100dvh;padding-top:var(--st);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.skip{position:absolute;top:-100%;left:1rem;background:var(--blue);color:#000;padding:.625rem 1rem;border-radius:var(--rsm);text-decoration:none;z-index:9999;font-weight:500;transition:top .2s}
+.skip:focus{top:1rem}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
 
-.comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
-.comp-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem; }
-.comp-card.highlight { border: 2px solid #185FA5; }
-.comp-card.best { border: 2px solid #0F6E56; }
-.comp-card .c-loc { font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px; }
-.comp-card .c-name { font-size: 13px; font-weight: 500; margin: 0 0 2px; line-height: 1.4; }
-.comp-card .c-spec { font-size: 11px; color: var(--color-text-secondary); margin: 0 0 10px; }
-.comp-card .c-price { font-size: 20px; font-weight: 500; margin: 0 0 2px; }
-.comp-card .c-totalpris { font-size: 12px; color: var(--color-text-secondary); margin: 0; }
+/* HEADER */
+header{background:rgba(13,17,23,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ln);padding:.875rem 1.25rem;padding-top:max(.875rem,var(--st));position:sticky;top:0;z-index:200}
+.hdr{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:.75rem}
+.wordmark{font-family:var(--fd);font-size:1.25rem;font-style:italic;color:var(--ink);letter-spacing:-.01em;line-height:1}
+.wordmark em{color:var(--blue);font-style:normal}
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:.625rem}
+.hdr-date{font-size:.68rem;color:var(--ink3);letter-spacing:.05em}
+.ctx-pill{display:flex;align-items:center;gap:5px;background:var(--sf2);border:1px solid var(--ln2);border-radius:20px;padding:3px 9px;font-size:.65rem;color:var(--ink2);cursor:pointer;transition:border-color .15s}
+.ctx-pill:hover{border-color:var(--blue)}
+.ctx-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-.badge { display: inline-block; padding: 3px 9px; border-radius: var(--border-radius-md); font-size: 11px; font-weight: 500; margin-bottom: 8px; }
-.badge-blue { background: #E6F1FB; color: #185FA5; }
-.badge-teal { background: #E1F5EE; color: #0F6E56; }
-.badge-amber { background: #FAEEDA; color: #854F0B; }
-.badge-red { background: #FCEBEB; color: #A32D2D; }
-.badge-gray { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+/* BOTTOM NAV */
+.bnav{position:fixed;bottom:0;left:0;right:0;background:rgba(22,27,34,0.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--ln);display:flex;padding-bottom:var(--sb);z-index:200}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px 6px;background:none;border:none;cursor:pointer;color:var(--ink3);font-family:var(--fm);font-size:.57rem;letter-spacing:.05em;text-transform:uppercase;transition:color .15s;-webkit-tap-highlight-color:transparent;min-height:52px;position:relative}
+.nb svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.nb.on{color:var(--blue)}
+.nb.on::after{content:'';position:absolute;bottom:0;left:25%;right:25%;height:2px;background:var(--blue);border-radius:2px 2px 0 0}
+.nb-dot{position:absolute;top:5px;right:calc(50% - 13px);width:7px;height:7px;background:var(--amber);border-radius:50%;border:2px solid var(--bg);animation:pulse 1.5s infinite}
 
-.divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.25rem 0; }
-.h3 { font-size: 14px; font-weight: 500; margin: 0 0 0.75rem; }
-.verdict-box { background: #E1F5EE; border-radius: var(--border-radius-lg); padding: 1.25rem; margin-bottom: 1.25rem; }
-.verdict-box .v-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #0F6E56; margin: 0 0 6px; }
-.verdict-box .v-price { font-size: 28px; font-weight: 500; color: #085041; margin: 0 0 6px; }
-.verdict-box .v-body { font-size: 13px; color: #0F6E56; line-height: 1.65; margin: 0; }
+/* MAIN */
+main{max-width:900px;margin:0 auto;padding:1.25rem 1rem;padding-bottom:calc(68px + var(--sb) + 1.5rem)}
+.sec{display:none}
+.sec.on{display:block}
 
-.cost-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.cost-table td { padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
-.cost-table td:last-child { text-align: right; font-weight: 500; }
-.cost-table tr.total td { font-weight: 500; font-size: 14px; border-bottom: none; padding-top: 12px; }
-.signal-list { margin: 0; padding: 0; list-style: none; }
-.signal-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; line-height: 1.6; }
-.signal-list li:last-child { border-bottom: none; }
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.info-card { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
-.info-card .i-label { font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px; }
-.info-card .i-val { font-size: 22px; font-weight: 500; margin: 0; }
-.info-card .i-sub { font-size: 12px; color: var(--color-text-secondary); margin: 2px 0 0; }
+/* SHARED */
+.eyebrow{font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:5px;display:block}
+.ptitle{font-family:var(--fd);font-size:1.5rem;font-style:italic;color:var(--ink);letter-spacing:-.02em;line-height:1.2;margin-bottom:.375rem}
+.psub{font-size:.82rem;color:var(--ink2);line-height:1.6;margin-bottom:1.25rem}
+hr.sep{border:none;border-top:1px solid var(--ln);margin:1.25rem 0}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.flag{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:3px;font-size:.63rem;font-weight:500;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.fg{background:var(--gdim);color:var(--green)}.fa{background:var(--adim);color:var(--amber)}.fr{background:var(--rdim);color:var(--red)}.fb{background:var(--bdim);color:var(--blue)}.fp{background:rgba(188,140,255,.12);color:var(--purple)}
+.qbox{background:var(--bg);border-left:2px solid var(--blue);border-radius:0 var(--rsm) var(--rsm) 0;padding:.7rem .9rem;margin-top:.625rem;font-size:.81rem;font-style:italic;color:var(--ink);line-height:1.7}
+.qbox-l{font-style:normal;font-size:.62rem;color:var(--blue);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;display:block}
+
+/* CAR HERO */
+.chero{background:var(--sf);border:1px solid var(--ln);border-radius:var(--rlg);padding:1.25rem;margin-bottom:.875rem;position:relative;overflow:hidden}
+.chero::before{content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:linear-gradient(135deg,transparent 60%,rgba(88,166,255,0.03) 100%);pointer-events:none}
+.chero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.ckpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1rem}
+@media(min-width:480px){.ckpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--sf2);border-radius:var(--rsm);padding:.625rem .75rem}
+.kl{font-size:.62rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:3px}
+.kv{font-size:1.1rem;font-family:var(--fd);color:var(--ink);line-height:1.1;letter-spacing:-.01em}
+.ks{font-size:.65rem;color:var(--ink3);display:block;margin-top:1px}
+.kpi.kb{border:1px solid rgba(88,166,255,.25);background:var(--bdim)}.kpi.kb .kv{color:var(--blue)}
+.kpi.kg{border:1px solid rgba(63,185,80,.25);background:var(--gdim)}.kpi.kg .kv{color:var(--green)}
+.kpi.ka{border:1px solid rgba(227,179,65,.25);background:var(--adim)}.kpi.ka .kv{color:var(--amber)}
+
+/* BUD BOX */
+.budbox{background:var(--sf2);border:1px solid var(--ln2);border-radius:var(--rlg);padding:1.25rem;margin-bottom:.875rem;display:grid;grid-template-columns:1fr 1fr;gap:1px;position:relative;overflow:hidden}
+.budbox::after{content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--ln)}
+.bside{padding:.25rem .5rem}
+.bl{font-size:.62rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.ba{font-family:var(--fd);font-size:1.7rem;color:var(--ink);letter-spacing:-.03em;line-height:1}
+.ba em{font-style:normal;font-size:.9rem;color:var(--ink2);margin-left:3px}
+.bn{font-size:.7rem;color:var(--ink3);margin-top:4px;line-height:1.4}
+.bside.tgt .ba{color:var(--green)}
+.bsave{grid-column:1/-1;margin-top:1rem;padding:.75rem;background:var(--gdim);border-radius:var(--rsm);border:1px solid rgba(63,185,80,.2);display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.bsave-t{font-size:.8rem;color:rgba(63,185,80,.9);line-height:1.4}
+.bsave-v{font-family:var(--fd);font-size:1.2rem;color:var(--green);white-space:nowrap;flex-shrink:0}
+
+/* DETAIL CARDS */
+.dcard{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);margin-bottom:.75rem;overflow:hidden}
+.dcard-h{padding:.875rem 1.1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.dcard-h:hover{background:var(--sf2)}
+.dcard-ti{font-size:.88rem;font-weight:500;color:var(--ink)}
+.dcard-su{font-size:.68rem;color:var(--ink3);margin-top:1px}
+.dcard-cv{flex-shrink:0;color:var(--ink3);transition:transform .2s}
+.dcard[open]>.dcard-h{border-bottom:1px solid var(--ln)}
+.dcard[open]>.dcard-h .dcard-cv{transform:rotate(180deg)}
+.dcard-b{padding:.875rem 1.1rem}
+.srow{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--ln);font-size:.83rem;line-height:1.6;color:var(--ink2)}
+.srow:last-child{border-bottom:none}
+.srow strong{color:var(--ink);font-weight:500}
+
+/* AGE BAR */
+.agebar{margin:.875rem 0}
+.abrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:.7rem;color:var(--ink3)}
+.abtag{padding:2px 7px;border-radius:3px;font-size:.62rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.abtrack{height:4px;background:var(--sf3);border-radius:2px;overflow:hidden}
+.abfill{height:100%;border-radius:2px}
+
+/* PRINCIPLE */
+.pacc{margin-bottom:.5rem}
+.pacc summary{list-style:none;background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:.875rem 1.1rem;cursor:pointer;display:flex;align-items:center;gap:.75rem;transition:background .15s,border-color .15s;-webkit-tap-highlight-color:transparent}
+.pacc summary::-webkit-details-marker{display:none}
+.pacc summary:hover{background:var(--sf2);border-color:var(--ln2)}
+.pacc[open] summary{border-color:var(--blue);border-radius:var(--r) var(--r) 0 0}
+.pacc-n{font-size:.62rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.1em;min-width:30px}
+.pacc-nm{flex:1;font-size:.9rem;font-weight:500;color:var(--ink)}
+.pacc-ic{flex-shrink:0;color:var(--ink3);transition:transform .2s}
+.pacc[open] .pacc-ic{transform:rotate(180deg)}
+.pacc-c{background:var(--sf);border:1px solid var(--blue);border-top:none;border-radius:0 0 var(--r) var(--r);padding:.875rem 1.1rem;font-size:.83rem;color:var(--ink2);line-height:1.7}
+
+/* CHECKLIST */
+.chk{list-style:none}
+.chk li{display:flex;align-items:flex-start;gap:.75rem;padding:.7rem 0;border-bottom:1px solid var(--ln);font-size:.83rem;color:var(--ink2);line-height:1.6}
+.chk li:last-child{border-bottom:none}
+.chk li strong{color:var(--ink);font-weight:500}
+.ci{flex-shrink:0;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;margin-top:1px}
+.ci.dn{background:var(--gdim);color:var(--green)}.ci.td{background:var(--sf3);color:var(--ink3);border:1px solid var(--ln2)}.ci.wn{background:var(--adim);color:var(--amber)}
+
+/* PIPELINE */
+.pipe{display:flex;border:1px solid var(--ln);border-radius:var(--r);background:var(--sf2);overflow:hidden;margin-bottom:1rem}
+.ps{flex:1;min-width:68px;padding:.75rem .5rem;text-align:center;border-right:1px solid var(--ln)}
+.ps:last-child{border-right:none}
+.ps.dn{background:rgba(63,185,80,.05)}.ps.nw{background:var(--bdim)}
+.pn{font-size:.55rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em}
+.pl{font-size:.68rem;font-weight:500;color:var(--ink2);margin-top:3px;line-height:1.3}
+.ps.dn .pl{color:var(--green)}.ps.nw .pl{color:var(--blue)}
+
+/* FINN TOOLS */
+.tcrd{background:var(--sf);border:1px solid var(--ln);border-radius:var(--rlg);padding:1.25rem;margin-bottom:.875rem}
+.tt{font-size:.9rem;font-weight:500;color:var(--ink);margin-bottom:4px}
+.ts{font-size:.73rem;color:var(--ink3);margin-bottom:.875rem;line-height:1.5}
+.irow{display:flex;gap:8px;flex-wrap:wrap}
+.tin{flex:1;min-width:150px;background:var(--sf2);border:1px solid var(--ln2);border-radius:var(--rsm);color:var(--ink);font-family:var(--fm);font-size:.83rem;padding:.55rem .8rem}
+.tin:focus{outline:2px solid var(--blue);outline-offset:2px}
+.tbtn{background:var(--blue);color:#000;border:none;border-radius:var(--rsm);padding:.55rem 1rem;cursor:pointer;font-family:var(--fm);font-size:.8rem;font-weight:500;white-space:nowrap;transition:opacity .15s}
+.tbtn:hover{opacity:.85}
+.kres{display:none;margin-top:.75rem;font-size:.82rem;line-height:1.7;color:var(--ink2);padding:.7rem .9rem;background:var(--sf2);border-radius:var(--rsm);border-left:2px solid var(--blue)}
+.kres.on{display:block}
+.crow{display:flex;gap:6px;flex-wrap:wrap;margin-top:.5rem}
+.chip{background:var(--sf2);border:1px solid var(--ln2);border-radius:20px;color:var(--ink2);font-family:var(--fm);font-size:.7rem;padding:3px 10px;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+
+/* TIPS */
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;margin-bottom:1rem}
+.tip{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:.9rem 1rem}
+.tip-t{font-size:.84rem;font-weight:500;color:var(--ink);margin:6px 0 4px}
+.tip-b{font-size:.77rem;color:var(--ink2);line-height:1.6}
+
+/* MARKET CARDS */
+.mkt{display:grid;grid-template-columns:repeat(auto-fit,minmax(188px,1fr));gap:8px;margin-bottom:1rem}
+.mc{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:.9rem 1rem}
+.mc.mf{border-color:var(--blue)}.mc.mg{border-color:var(--green)}.mc.mr{border-color:rgba(248,81,73,.3)}
+.ml{font-size:.68rem;color:var(--ink3);margin-bottom:3px}
+.mn{font-size:.84rem;font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:3px}
+.msp{font-size:.68rem;color:var(--ink3);margin-bottom:8px;line-height:1.45}
+.mp{font-family:var(--fd);font-size:1.3rem;color:var(--ink);letter-spacing:-.02em;line-height:1}
+.mt2{font-size:.68rem;color:var(--ink3);margin-top:2px}
+
+/* ════════════════════════════════════
+   CLAUDE TAB — DUAL MODE
+   ════════════════════════════════════ */
+.claude-tabs{display:flex;gap:0;background:var(--sf2);border:1px solid var(--ln);border-radius:var(--r) var(--r) 0 0;overflow:hidden;margin-bottom:0}
+.ctab{flex:1;padding:.7rem 1rem;background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:.75rem;color:var(--ink3);letter-spacing:.05em;transition:all .15s;border-right:1px solid var(--ln);display:flex;align-items:center;justify-content:center;gap:6px;-webkit-tap-highlight-color:transparent}
+.ctab:last-child{border-right:none}
+.ctab.on{background:var(--sf);color:var(--ink);border-bottom:2px solid var(--blue)}
+.ctab svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ctab .nbadge{background:var(--amber);color:#000;border-radius:10px;padding:1px 6px;font-size:.6rem;font-weight:500;min-width:16px;text-align:center;display:none}
+.ctab .nbadge.show{display:inline-block}
+
+/* CHAT */
+.chat-wrap{background:var(--sf);border:1px solid var(--ln);border-top:none;border-radius:0 0 var(--rlg) var(--rlg);overflow:hidden;display:flex;flex-direction:column;margin-bottom:1rem}
+.chat-hdr{background:var(--sf2);border-bottom:1px solid var(--ln);padding:.75rem 1.1rem;display:flex;align-items:center;gap:.75rem}
+.chat-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 6px var(--blue)}
+.chat-ti{font-size:.84rem;font-weight:500;color:var(--ink)}
+.chat-me{font-size:.68rem;color:var(--ink3);margin-left:auto}
+.chat-msgs{padding:.875rem 1.1rem;min-height:180px;max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:.75rem}
+.chat-msgs::-webkit-scrollbar{width:3px}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--ln2);border-radius:2px}
+.msg{display:flex;gap:.5rem;align-items:flex-start}
+.msg.u{flex-direction:row-reverse}
+.av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:500;margin-top:2px}
+.msg.ai .av{background:var(--blue);color:#000}
+.msg.u .av{background:var(--sf3);color:var(--ink2);border:1px solid var(--ln2)}
+.bbl{padding:.55rem .8rem;border-radius:var(--rsm);font-size:.82rem;line-height:1.6;max-width:88%}
+.msg.ai .bbl{background:var(--sf2);color:var(--ink2);border:1px solid var(--ln)}
+.msg.u .bbl{background:var(--bdim);color:var(--ink);border:1px solid rgba(88,166,255,.2)}
+.msg.ai .bbl strong{color:var(--ink)}
+.bbl.typ{color:var(--ink3);font-style:italic}
+.chat-chips{display:flex;gap:6px;flex-wrap:wrap;padding:.625rem 1.1rem;border-top:1px solid var(--ln)}
+.ci2row{padding:.75rem 1.1rem;border-top:1px solid var(--ln);display:flex;gap:8px;background:var(--sf)}
+.cin{flex:1;background:var(--sf2);border:1px solid var(--ln2);border-radius:var(--rsm);color:var(--ink);font-family:var(--fm);font-size:.83rem;padding:.55rem .8rem;resize:none;height:40px;line-height:1.4}
+.cin:focus{outline:2px solid var(--blue);outline-offset:2px}
+.csend{background:var(--blue);color:#000;border:none;border-radius:var(--rsm);width:40px;height:40px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .15s}
+.csend:hover{opacity:.85}
+.csend:disabled{background:var(--sf3);cursor:not-allowed}
+.csend svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* LOG (LOGGBOK) */
+.log-wrap{background:var(--sf);border:1px solid var(--ln);border-top:none;border-radius:0 0 var(--rlg) var(--rlg);overflow:hidden;margin-bottom:1rem;display:none}
+.log-wrap.on{display:block}
+.log-input-area{padding:1.1rem;border-bottom:1px solid var(--ln);background:var(--sf2)}
+.log-input-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.625rem}
+.log-input-title{font-size:.8rem;font-weight:500;color:var(--ink)}
+.log-type-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.625rem}
+.ltype{padding:4px 10px;border-radius:20px;border:1px solid var(--ln2);background:none;color:var(--ink3);font-family:var(--fm);font-size:.68rem;cursor:pointer;transition:all .15s;-webkit-tap-highlight-color:transparent}
+.ltype.sel{border-color:var(--blue);background:var(--bdim);color:var(--blue)}
+.log-text{width:100%;background:var(--sf);border:1px solid var(--ln2);border-radius:var(--rsm);color:var(--ink);font-family:var(--fm);font-size:.83rem;padding:.625rem .875rem;resize:none;min-height:72px;line-height:1.5}
+.log-text:focus{outline:2px solid var(--blue);outline-offset:2px}
+.log-text::placeholder{color:var(--ink3)}
+.log-submit-row{display:flex;align-items:center;justify-content:space-between;margin-top:.625rem;gap:.5rem}
+.log-hint{font-size:.7rem;color:var(--ink3);line-height:1.4;flex:1}
+.log-btn{background:var(--green);color:#000;border:none;border-radius:var(--rsm);padding:.55rem 1rem;cursor:pointer;font-family:var(--fm);font-size:.78rem;font-weight:500;white-space:nowrap;transition:opacity .15s;display:flex;align-items:center;gap:5px}
+.log-btn:hover{opacity:.85}
+.log-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.log-timeline{padding:.875rem 1.1rem;max-height:360px;overflow-y:auto}
+.log-timeline::-webkit-scrollbar{width:3px}
+.log-timeline::-webkit-scrollbar-thumb{background:var(--ln2);border-radius:2px}
+.log-empty{text-align:center;padding:2rem 1rem;color:var(--ink3);font-size:.82rem;font-style:italic}
+.log-entry{display:flex;gap:.75rem;padding:.75rem 0;border-bottom:1px solid var(--ln);position:relative}
+.log-entry:last-child{border-bottom:none}
+.log-line{position:absolute;left:8px;top:32px;bottom:-12px;width:1px;background:var(--ln)}
+.log-entry:last-child .log-line{display:none}
+.le-icon{width:18px;height:18px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;border:1px solid var(--ln2);margin-top:1px;position:relative;z-index:1}
+.le-body{flex:1;min-width:0}
+.le-header{display:flex;align-items:baseline;gap:.5rem;margin-bottom:3px;flex-wrap:wrap}
+.le-type{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.07em}
+.le-time{font-size:.65rem;color:var(--ink3);margin-left:auto;white-space:nowrap}
+.le-text{font-size:.82rem;color:var(--ink2);line-height:1.55}
+.le-text strong{color:var(--ink);font-weight:500}
+.le-ai{margin-top:.5rem;background:var(--sf2);border-radius:var(--rsm);padding:.5rem .75rem;font-size:.78rem;color:var(--ink2);line-height:1.55;border-left:2px solid var(--blue)}
+.le-ai strong{color:var(--ink)}
+.le-spinner{display:inline-flex;align-items:center;gap:5px;color:var(--ink3);font-size:.75rem;font-style:italic}
+.le-spinner::before{content:'';width:8px;height:8px;border:1.5px solid var(--ln2);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* CTX PANEL */
+.ctx-panel{background:var(--sf);border:1px solid var(--ln2);border-radius:var(--r);padding:1rem 1.1rem;margin-bottom:.875rem}
+.ctx-panel-title{font-size:.75rem;font-weight:500;color:var(--ink);margin-bottom:.625rem;display:flex;align-items:center;gap:.5rem}
+.ctx-items{display:flex;flex-direction:column;gap:.375rem}
+.ctx-item{display:flex;align-items:flex-start;gap:.625rem;font-size:.78rem;color:var(--ink2);line-height:1.5}
+.ctx-item .ci-key{color:var(--ink3);min-width:80px;flex-shrink:0;font-size:.72rem}
+.ctx-item .ci-val{color:var(--ink)}
+.ctx-item.updated .ci-val{color:var(--green)}
+.ctx-item.updated .ci-key::before{content:'↑ ';color:var(--green)}
+
+/* SR */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* RESPONSIVE */
+@media(min-width:600px){main{padding:1.75rem 1.5rem;padding-bottom:calc(68px + var(--sb) + 2rem)}.ptitle{font-size:1.85rem}}
+@media(min-width:860px){.bnav{position:relative;border-top:none;border-bottom:1px solid var(--ln)}.nb{flex-direction:row;gap:7px;font-size:.7rem;padding:.7rem 1rem;min-height:44px;justify-content:center}.nb.on::after{top:0;bottom:auto;left:0;right:0;width:100%;height:2px;border-radius:0 0 2px 2px}.nb-dot{top:7px}header{position:relative}main{padding-bottom:1.75rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
+</head>
+<body>
+<a href="#main" class="skip">Hopp til innhold</a>
 
-<div class="wrap">
-
-<p class="section-label">Markedsanalyse — BMW 530d 2019 · kjøper i Trondheim</p>
-
-<div class="tabs">
-  <div class="tab active" onclick="switchTab('marked')"><i class="ti ti-chart-bar" aria-hidden="true"></i> Marked</div>
-  <div class="tab" onclick="switchTab('transport')"><i class="ti ti-truck" aria-hidden="true"></i> Transport Bergen→TRD</div>
-  <div class="tab" onclick="switchTab('konklusjon')"><i class="ti ti-check" aria-hidden="true"></i> Konklusjon</div>
-</div>
-
-<div id="panel-marked" class="panel active">
-  <p class="h3">Sammenlignbare biler til salgs nå — hele Norge</p>
-
-  <div class="comp-grid">
-
-    <div class="comp-card highlight">
-      <span class="badge badge-blue">Bil 1 — aktuell</span>
-      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Bergen (Rådal/Lagunen)</p>
-      <p class="c-name">530d xDrive M-Sport Touring</p>
-      <p class="c-spec">2019 · 179 000 km · 265 hk · 2 eiere · EU nå tatt</p>
-      <p class="c-price">399 900 kr</p>
-      <p class="c-totalpris">+ transport ~8 000 kr = ~408 000 total</p>
-    </div>
-
-    <div class="comp-card">
-      <span class="badge badge-amber">Sammenligning</span>
-      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Egersund</p>
-      <p class="c-name">520d xDrive M-Sport Touring</p>
-      <p class="c-spec">2019 · 192 000 km · 190 hk · 6 eiere · EU 05/2027</p>
-      <p class="c-price">384 532 kr</p>
-      <p class="c-totalpris">+ transport ~10 000 kr = ~395 000 total</p>
-    </div>
-
-    <div class="comp-card">
-      <span class="badge badge-gray">Sammenligning</span>
-      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Trondheim-området</p>
-      <p class="c-name">530d xDrive 286hk/Skinn/Weba/HUD/360</p>
-      <p class="c-spec">2021 · 134 000 km · 286 hk · forhandler · garanti</p>
-      <p class="c-price">ca. 480 000 kr</p>
-      <p class="c-totalpris">Ingen transport · lavere km · nyere</p>
-    </div>
-
-    <div class="comp-card">
-      <span class="badge badge-gray">Sammenligning</span>
-      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Trondheim (Lysholm)</p>
-      <p class="c-name">530e xDrive M-Sport Pano/HUD/Krok</p>
-      <p class="c-spec">2021 · 124 000 km · plug-in hybrid · garanti</p>
-      <p class="c-price">429 900 kr</p>
-      <p class="c-totalpris">Ingen transport · hybrid · garanti inkl.</p>
-    </div>
-
-    <div class="comp-card">
-      <span class="badge badge-gray">Sammenligning</span>
-      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Sandvika</p>
-      <p class="c-name">530e xDrive M-Sport Pano/Skinn/Krok</p>
-      <p class="c-spec">2021 · 135 400 km · plug-in · 12 mnd garanti</p>
-      <p class="c-price">399 000 kr</p>
-      <p class="c-totalpris">+ transport ~12 000 kr = ~411 000 total</p>
-    </div>
-
-    <div class="comp-card">
-      <span class="badge badge-red">Obs — 6 eiere</span>
-      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Glitre / Numedal</p>
-      <p class="c-name">530d xDrive Touring M-Sport sen 2019</p>
-      <p class="c-spec">2019 · ukjent km · 6 eiere · forhandler</p>
-      <p class="c-price">se annonse</p>
-      <p class="c-totalpris">Lang kjøretur, men lokal levering mulig</p>
-    </div>
-
-  </div>
-
-  <p class="section-label">Markedsbilde oppsummert</p>
-  <ul class="signal-list">
-    <li><span style="flex-shrink:0"><span class="badge badge-blue">530d 2019</span></span><div>En <strong>530d 2019 med under 180k km og M-Sport</strong> ligger normalt i 370–440k kr på markedet. Bil 1 til 399 900 er i øvre del av normalt — ikke billig, men ikke overprisa.</div></li>
-    <li><span style="flex-shrink:0"><span class="badge badge-teal">2021-modeller</span></span><div>For 420–480k kr finnes det <strong>2021-modeller med lavere km og garanti</strong> — noen lokalt i Trondheim. Det er det reelle alternativet til Bil 1.</div></li>
-    <li><span style="flex-shrink:0"><span class="badge badge-amber">Eiere</span></span><div>Bil 1 har <strong>2 eiere</strong> — ekstremt godt for årsmodellen. Egersund-bilen har 6 eiere — det er et stort rødt flagg som rettferdiggjør lavere pris der.</div></li>
-    <li><span style="flex-shrink:0"><span class="badge badge-red">265 vs 190 hk</span></span><div>Bil 1 er <strong>530d (265 hk)</strong> — klart sterkere motor enn 520d (190 hk). Det gir 30–40k kr mer i markedsverdi isolert sett.</div></li>
-  </ul>
-</div>
-
-<div id="panel-transport" class="panel">
-  <p class="h3">Hva koster det å hente eller frakte bil fra Bergen til Trondheim?</p>
-
-  <div class="two-col" style="margin-bottom:1.25rem">
-    <div class="info-card">
-      <p class="i-label">Kjøreavstand</p>
-      <p class="i-val">~680 km</p>
-      <p class="i-sub">Ca. 7–8 timers kjøring</p>
-    </div>
-    <div class="info-card">
-      <p class="i-label">Reisetid tur/retur</p>
-      <p class="i-val">1–2 dager</p>
-      <p class="i-sub">Avhengig av om du overnatter</p>
+<header>
+  <div class="hdr">
+    <div class="wordmark">Prute<em>mester</em></div>
+    <div class="hdr-r">
+      <button class="ctx-pill" onclick="go('ai');switchMode('logg')" title="Se oppdatert kontekst" aria-label="Vis loggbok og kontekst">
+        <span class="ctx-dot"></span>
+        <span id="ctx-count">0 logger</span>
+      </button>
+      <span class="hdr-date">19. mai 2026</span>
     </div>
   </div>
+</header>
 
-  <p class="section-label">Alternativ 1 — du reiser selv og kjører hjem</p>
-  <table class="cost-table">
-    <tr><td>Tog Trondheim–Bergen (tur)</td><td>600–900 kr</td></tr>
-    <tr><td>Drivstoff Bergen–Trondheim (ca. 65L diesel × 18 kr)</td><td>~1 200 kr</td></tr>
-    <tr><td>Bomavgifter E39/E16 tur/retur ca.</td><td>~600 kr</td></tr>
-    <tr><td>Mat og overnatting (valgfritt)</td><td>0–1 500 kr</td></tr>
-    <tr class="total"><td>Totalt egenregi</td><td>~2 500–4 200 kr</td></tr>
-  </table>
+<nav class="bnav" role="navigation" aria-label="Hovednavigasjon">
+  <button class="nb on" id="nb-start" onclick="go('start')" aria-current="page">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Start
+  </button>
+  <button class="nb" id="nb-bil1" onclick="go('bil1')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="8" width="22" height="10" rx="2"/><path d="M5 18v2M19 18v2M3 8l3-5h12l3 5"/><circle cx="7" cy="18" r="1"/><circle cx="17" cy="18" r="1"/></svg>
+    Bil 1
+    <span class="bnav-dot" id="b1dot" title="Garanti forhandlet" style="background:var(--green)"></span>
+  </button>
+  <button class="nb" id="nb-bil2" onclick="go('bil2')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="8" width="22" height="10" rx="2"/><path d="M5 18v2M19 18v2M3 8l3-5h12l3 5"/><circle cx="7" cy="18" r="1"/><circle cx="17" cy="18" r="1"/></svg>
+    Bil 2
+  </button>
+  <button class="nb" id="nb-finn" onclick="go('finn')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    Finn
+  </button>
+  <button class="nb" id="nb-manus" onclick="go('manus')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    Manus
+  </button>
+  <button class="nb" id="nb-ai" onclick="go('ai')">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+    Claude
+    <span class="nb-dot" id="ainewdot" style="display:none;background:var(--amber)"></span>
+  </button>
+</nav>
 
-  <hr class="divider">
-  <p class="section-label">Alternativ 2 — biltransport (Gire / Autotransport)</p>
-  <table class="cost-table">
-    <tr><td>Biltransport Bergen→Trondheim (Gire-tjeneste e.l.)</td><td>6 000–10 000 kr</td></tr>
-    <tr><td>Du gjør ingenting</td><td>0 kr tid</td></tr>
-    <tr class="total"><td>Totalt biltransport</td><td>~8 000 kr snitt</td></tr>
-  </table>
+<main id="main" tabindex="-1">
 
-  <hr class="divider">
-  <p class="section-label">Alternativ 3 — be Car4Sale levere</p>
-  <ul class="signal-list">
-    <li><i class="ti ti-bulb" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Car4Sale er landsdekkende med 666+ annonser. De leverer ofte bil mot et kjøretilskudd. <strong>Spør om de kan levere til Trondheim, og be om at dette inkluderes i prisen</strong> — eller brukes som argument for å presse ned totalpris.</div></li>
-    <li><i class="ti ti-message" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Forhandlingsteknikk: <em>"Jeg bor i Trondheim. Kan dere hjelpe med levering, eller reflektere dette i prisen?"</em> — gir deg en ny forhandlingsdimensjon utover kun pris.</div></li>
-  </ul>
-
-  <div class="verdict-box" style="background:#E6F1FB">
-    <p class="v-label" style="color:#185FA5">Time Horizon — transportkostnad er reell totalpris</p>
-    <p class="v-price" style="color:#0C447C;font-size:22px">399 900 + ~5 000 kr = ~405 000 kr totalt</p>
-    <p class="v-body" style="color:#185FA5">Egenregi (tog + kjøring) er billigst: ca. 3 000–4 500 kr. Biltransport: ~8 000 kr. Uansett — Bergen-bilen er IKKE like billig som listeprisen tilsier. Dette er et forhandlingsargument.</p>
-  </div>
-</div>
-
-<div id="panel-konklusjon" class="panel">
-  <p class="h3">Samlet vurdering — er Bil 1 riktig kjøp?</p>
-
-  <div class="two-col" style="margin-bottom:1.25rem">
-    <div class="info-card">
-      <p class="i-label">Listepris + transport (snitt)</p>
-      <p class="i-val">~405 000 kr</p>
-      <p class="i-sub">Reell totalkostnad for Trondheim-kjøper</p>
+<!-- START -->
+<section id="s-start" class="sec on" aria-labelledby="h-start">
+  <span class="eyebrow">Forhandlingsstrategi · BMW 530</span>
+  <h1 class="ptitle" id="h-start">Fem prinsipper for<br>bedre bilkjøp</h1>
+  <p class="psub">Informasjonsasymmetri vinner over magefølelse. Alt du trenger er her.</p>
+  <div style="background:var(--sf);border:1px solid var(--ln);border-radius:var(--rlg);padding:1.1rem;margin-bottom:.875rem">
+    <div style="font-size:.72rem;color:var(--ink3);margin-bottom:.625rem;text-transform:uppercase;letter-spacing:.07em">Fase nå</div>
+    <div class="pipe">
+      <div class="ps dn"><div class="pn">01</div><div class="pl">Kartlegg</div></div>
+      <div class="ps dn"><div class="pn">02</div><div class="pl">Analyser</div></div>
+      <div class="ps nw"><div class="pn">03</div><div class="pl">Bud</div></div>
+      <div class="ps"><div class="pn">04</div><div class="pl">Forhandl</div></div>
+      <div class="ps"><div class="pn">05</div><div class="pl">Evaluer</div></div>
     </div>
-    <div class="info-card">
-      <p class="i-label">Hva du bør betale</p>
-      <p class="i-val" style="color:#0F6E56">360–370 000 kr</p>
-      <p class="i-sub">Inkl. at de leverer, ELLER du tar transport selv</p>
+    <p style="font-size:.78rem;color:var(--ink2)">Fase 03 er aktiv. Logg ny info i Claude-fanen — konteksten oppdateres automatisk.</p>
+  </div>
+  <details class="pacc"><summary><span class="pacc-n">01</span><span class="pacc-nm">Ghost Notes — les det usagte</span><svg class="pacc-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="pacc-c"><p>Hver annonse har signaler utenom det åpenbare. «Kosmetiske merker» i liten skrift = noe å sjekke fysisk. Merk hva som ikke er nevnt.</p><div class="qbox"><span class="qbox-l">Øvelse</span>Skriv ned 3 ting som logisk burde vært sagt. Still 1–2 nysgjerrige spørsmål om de hullene.</div></div></details>
+  <details class="pacc"><summary><span class="pacc-n">02</span><span class="pacc-nm">Loss Function — 5-stegs loop</span><svg class="pacc-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="pacc-c"><ol style="list-style:decimal;padding-left:1.1rem;line-height:1.9"><li>Definer metrikk — hva betyr «bedre» her?</li><li>Forutsi utfall — sett walk-away FØR du ringer</li><li>Lever — gå sakte nok til å se feilpunktet</li><li>Finn nøyaktig hvor det gikk galt</li><li>Juster én variabel — gjenta</li></ol></div></details>
+  <details class="pacc"><summary><span class="pacc-n">03</span><span class="pacc-nm">Adaptive Tension — CORE</span><svg class="pacc-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="pacc-c"><ul style="list-style:none;line-height:2"><li><strong style="color:var(--blue)">C</strong> · Curiosity — signal at noe er verdt å undersøke</li><li><strong style="color:var(--blue)">O</strong> · Objectivity — systemer forsvarer seg ikke, folk gjør det</li><li><strong style="color:var(--blue)">R</strong> · Reassurance — hold selger trygg</li><li><strong style="color:var(--blue)">E</strong> · Empathy — anerkjenn, signaler intensjon</li></ul><div class="qbox"><span class="qbox-l">Åpning</span>«Jeg liker bilen veldig godt. Men jeg har sett på markedet en stund og har noen spørsmål først.»</div></div></details>
+  <details class="pacc"><summary><span class="pacc-n">04</span><span class="pacc-nm">Time Horizon — selger har kortere tid</span><svg class="pacc-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="pacc-c"><p>En bil på markedet koster selger forsikring og kapital. Du kan vente. De kan ikke.</p><div class="qbox"><span class="qbox-l">Formulering</span>«Jeg er ikke i rush, men budet gjelder til fredag.»</div></div></details>
+  <details class="pacc"><summary><span class="pacc-n">05</span><span class="pacc-nm">Identity as Anchor — vær eksperten</span><svg class="pacc-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="pacc-c"><p>Nevn DPF, EGR, kjede, servicehistorikk. Selger vet at du vet — det skifter maktbalansen.</p><div class="qbox"><span class="qbox-l">Spørsmål</span>«Har dere kjørt dieselpartikkelfilter-diagnostikk? Og vet dere når siste EGR-rens ble gjort?»</div></div></details>
+  <hr class="sep">
+  <div style="background:var(--sf);border:1px solid var(--ln);border-radius:var(--rlg);padding:1.1rem">
+    <div style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:.75rem">De 7 reglene</div>
+    <ul class="chk">
+      <li><span class="ci dn">✓</span><span><strong>Ring — ikke meld.</strong> Tonen forteller deg alt om hastverk.</span></li>
+      <li><span class="ci dn">✓</span><span><strong>Aldri bud uten fysisk visning.</strong> Du får observasjoner å bruke.</span></li>
+      <li><span class="ci dn">✓</span><span><strong>Start med spørsmål, ikke pris.</strong> «Hva er bakgrunnen for salget?»</span></li>
+      <li><span class="ci td">4</span><span><strong>Gi et konkret tall</strong> — ikke et intervall.</span></li>
+      <li><span class="ci td">5</span><span><strong>Sett budets utløpstid.</strong> Skaper psykologisk press.</span></li>
+      <li><span class="ci td">6</span><span><strong>Still ett teknisk spørsmål</strong> de må slå opp.</span></li>
+      <li><span class="ci wn">!</span><span><strong>Vær villig til å gå.</strong> Det er ditt sterkeste kort.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- BIL 1 -->
+<section id="s-bil1" class="sec" aria-labelledby="h-bil1" hidden>
+  <span class="eyebrow">Bergen · Car4Sale · SV92486</span>
+  <h1 class="ptitle" id="h-bil1">BMW 530d xDrive<br>M-Sport 2019</h1>
+  <div class="chero">
+    <div class="chero-top">
+      <div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.625rem">
+          <span class="flag fg">✓ 1 år garanti</span><span class="flag fb" id="b1-hk-flag">265 hk</span><span class="flag fg">2 eiere</span><span class="flag fg">EU fersk</span><span class="flag fa" id="b1-km-flag">179k km</span>
+        </div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.6">Bergen · Lagunen<br><a href="https://www.finn.no/mobility/item/461609490" target="_blank">FINN 461609490</a></div>
+      </div>
+      <svg width="68" height="68" viewBox="0 0 68 68" aria-label="Kjøpsscore 74 av 100"><circle cx="34" cy="34" r="28" fill="none" stroke="var(--sf3)" stroke-width="5"/><circle cx="34" cy="34" r="28" fill="none" stroke="var(--amber)" stroke-width="5" stroke-dasharray="175.9" stroke-dashoffset="45.7" stroke-linecap="round" transform="rotate(-90 34 34)"/><text x="34" y="32" text-anchor="middle" font-family="'Instrument Serif',serif" font-size="14" fill="var(--ink)">74</text><text x="34" y="43" text-anchor="middle" font-family="'DM Mono',monospace" font-size="7" fill="var(--ink3)">/ 100</text></svg>
+    </div>
+    <div class="ckpis">
+      <div class="kpi ka"><span class="kl">Listepris</span><span class="kv" id="b1-listepris">399 900</span><span class="ks">kr inkl. omreg.</span></div>
+      <div class="kpi kb"><span class="kl">Åpningsbud</span><span class="kv" id="b1-bud">355 000</span><span class="ks">kr</span></div>
+      <div class="kpi kg"><span class="kl">Mål</span><span class="kv" id="b1-maal">365 000</span><span class="ks">kr realistisk</span></div>
+      <div class="kpi"><span class="kl">Annonsealder</span><span class="kv">~3–4</span><span class="ks">mnd · jan/feb 2026</span></div>
+    </div>
+    <div class="agebar"><div class="abrow"><span>Annonsealder</span><span class="abtag" style="background:var(--adim);color:var(--amber)">Normal</span></div><div class="abtrack"><div class="abfill" style="width:28%;background:var(--amber)"></div></div></div>
+  </div>
+  <div class="budbox">
+    <div class="bside"><div class="bl">Åpningsbud</div><div class="ba" id="b1-bud2">355 000<em>kr</em></div><div class="bn">Ring. Gi tallet direkte.<br>Sett fredag som frist.</div></div>
+    <div class="bside tgt"><div class="bl">Realistisk mål</div><div class="ba" id="b1-maal2">365 000<em>kr</em></div><div class="bn">~8,7% under listepris.<br>Forsvarlig med garanti.</div></div>
+    <div class="bsave"><div class="bsave-t">1 år garanti forhandlet ✓<br>Forhandlingsrom på listepris</div><div class="bsave-v" id="b1-saving">−34 900 kr</div></div>
+  </div>
+  <details class="dcard" open><summary class="dcard-h" onclick="toggleDcard(this)"><div><div class="dcard-ti">Signalanalyse</div><div class="dcard-su">Ghost Notes</div></div><svg class="dcard-cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="dcard-b"><div class="srow"><span><span class="flag fr">!</span></span><span><strong>179 000 km på B57-diesel.</strong> DPF, EGR og injektorer er reelle kostnader innen 20–40k km.</span></div><div class="srow"><span><span class="flag fa">obs</span></span><span><strong>«Kosmetiske merker på felger»</strong> — sjekk fysisk, kan brukes som forhandlingspunkt.</span></div><div class="srow"><span><span class="flag fg">+</span></span><span><strong>2 eiere, norsk, EU fersk.</strong> Bremsesett bytta jul 2025, service des 2024.</span></div><div class="srow"><span><span class="flag fg">+</span></span><span><strong>1 år garanti forhandlet.</strong> Reduserer risikoen betraktelig. Verdi ~10–20k kr.</span></div><div class="srow"><span><span class="flag fb">info</span></span><span><strong>Car4Sale = volumforhandler.</strong> Systempris, ikke sentimental. Mer fleksible enn privatselger.</span></div></div></details>
+  <details class="dcard"><summary class="dcard-h" onclick="toggleDcard(this)"><div><div class="dcard-ti">Transportkalkyle</div><div class="dcard-su">Bergen → Trondheim · 680 km</div></div><svg class="dcard-cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="dcard-b"><table style="width:100%;border-collapse:collapse;font-size:.81rem"><tr><td style="padding:7px 0;border-bottom:1px solid var(--ln);color:var(--ink2)">Tog tur Trondheim–Bergen</td><td style="text-align:right;font-weight:500;padding:7px 0 7px 1rem;border-bottom:1px solid var(--ln)">700–900 kr</td></tr><tr><td style="padding:7px 0;border-bottom:1px solid var(--ln);color:var(--ink2)">Drivstoff (~65L × 18 kr)</td><td style="text-align:right;font-weight:500;padding:7px 0 7px 1rem;border-bottom:1px solid var(--ln)">~1 200 kr</td></tr><tr><td style="padding:7px 0;border-bottom:1px solid var(--ln);color:var(--ink2)">Bom og ferje</td><td style="text-align:right;font-weight:500;padding:7px 0 7px 1rem;border-bottom:1px solid var(--ln)">~600 kr</td></tr><tr><td style="padding:11px 0 7px;font-weight:500;color:var(--ink)">Egenregi totalt</td><td style="text-align:right;padding:11px 0 7px 1rem;font-weight:500;font-size:.85rem;color:var(--ink)">~2 500–3 500 kr</td></tr></table><div class="qbox" style="margin-top:.875rem"><span class="qbox-l">Argument</span>«Jeg bor i Trondheim. Egenregi koster ~3 500 kr. Med 179k km er totalen for høy på 400k. Jeg gir 355 000 og henter selv.»</div></div></details>
+</section>
+
+<!-- BIL 2 -->
+<section id="s-bil2" class="sec" aria-labelledby="h-bil2" hidden>
+  <span class="eyebrow">Sævareid · Privat · VH68799</span>
+  <h1 class="ptitle" id="h-bil2">BMW 530xd LCI<br>2015</h1>
+  <div class="chero">
+    <div class="chero-top">
+      <div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.625rem"><span class="flag fr">Steg 2 tune</span><span class="flag fr">Stormskade</span><span class="flag fa">10 år</span><span class="flag fg">EU t/2027</span><span class="flag fg">133k km</span></div>
+        <div style="font-size:.78rem;color:var(--ink2);line-height:1.6">Sævareid, Vestland · Privat<br><a href="https://www.finn.no/mobility/item/438441768" target="_blank">FINN 438441768</a></div>
+      </div>
+      <svg width="68" height="68" viewBox="0 0 68 68" aria-label="Kjøpsscore 58 av 100"><circle cx="34" cy="34" r="28" fill="none" stroke="var(--sf3)" stroke-width="5"/><circle cx="34" cy="34" r="28" fill="none" stroke="var(--red)" stroke-width="5" stroke-dasharray="175.9" stroke-dashoffset="73.9" stroke-linecap="round" transform="rotate(-90 34 34)"/><text x="34" y="32" text-anchor="middle" font-family="'Instrument Serif',serif" font-size="14" fill="var(--ink)">58</text><text x="34" y="43" text-anchor="middle" font-family="'DM Mono',monospace" font-size="7" fill="var(--ink3)">/ 100</text></svg>
+    </div>
+    <div class="ckpis">
+      <div class="kpi ka"><span class="kl">Listepris</span><span class="kv" id="b2-listepris">364 434</span><span class="ks">kr inkl. omreg.</span></div>
+      <div class="kpi kb"><span class="kl">Åpningsbud</span><span class="kv" id="b2-bud">315 000</span><span class="ks">kr</span></div>
+      <div class="kpi kg"><span class="kl">Mål</span><span class="kv" id="b2-maal">330 000</span><span class="ks">kr realistisk</span></div>
+      <div class="kpi"><span class="kl">Annonsealder</span><span class="kv">12–15</span><span class="ks">mnd · gammel</span></div>
+    </div>
+    <div class="agebar"><div class="abrow"><span>12–15 måneder ute</span><span class="abtag" style="background:var(--rdim);color:var(--red)">Gammel</span></div><div class="abtrack"><div class="abfill" style="width:88%;background:var(--red)"></div></div></div>
+  </div>
+  <div class="budbox">
+    <div class="bside"><div class="bl">Åpningsbud</div><div class="ba" id="b2-bud2">315 000<em>kr</em></div><div class="bn">Tune + stormskade er argumentet.<br>Selger betaler for synlighet.</div></div>
+    <div class="bside tgt"><div class="bl">Realistisk mål</div><div class="ba" id="b2-maal2">330 000<em>kr</em></div><div class="bn">~9,5% under listepris.</div></div>
+    <div class="bsave" style="background:var(--adim);border-color:rgba(227,179,65,.2)"><div class="bsave-t" style="color:rgba(227,179,65,.9)">12–15 mnd ute · betaler for synlighet<br>Motivert selger</div><div class="bsave-v" style="color:var(--amber)">−34 434 kr</div></div>
+  </div>
+  <details class="dcard" open><summary class="dcard-h" onclick="toggleDcard(this)"><div><div class="dcard-ti">Signalanalyse</div><div class="dcard-su">Ghost Notes</div></div><svg class="dcard-cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary><div class="dcard-b"><div class="srow"><span><span class="flag fr">!</span></span><span><strong>Steg 2 tune + downpipe.</strong> Krev skriftlig dokumentasjon og EU-godkjenning etter modifikasjon.</span></div><div class="srow"><span><span class="flag fr">!</span></span><span><strong>Nylakkert etter stormskade sept 2023.</strong> Sjekk CarVertical (reg. VH68799).</span></div><div class="srow"><span><span class="flag fa">obs</span></span><span><strong>Byttet drivaksel høyre foran.</strong> Kjent xDrive-svakhet — sjekk venstre også.</span></div><div class="srow"><span><span class="flag fg">+</span></span><span><strong>Entusiast-eid, svært dokumentert.</strong> Diff-olje, girkasse-flush, toppdekselpakning på papir. EU t/2027.</span></div></div></details>
+</section>
+
+<!-- FINN -->
+<section id="s-finn" class="sec" aria-labelledby="h-finn" hidden>
+  <span class="eyebrow">Søkestrategi · Verktøy</span>
+  <h1 class="ptitle" id="h-finn">Finn beste kjøp</h1>
+  <p class="psub">Kanskje finnes en bedre bil. Her er verktøyene.</p>
+  <div class="tcrd">
+    <div class="tt">FINN-kode alderskalkulator</div>
+    <div class="ts">Referanse: 464 190 850 = 19.05.2026. Estimer annonsealder fra koden.</div>
+    <div class="irow"><input class="tin" type="number" id="ki" placeholder="F.eks. 461609490" aria-label="FINN-kode" inputmode="numeric"><button class="tbtn" onclick="calcAge()">Beregn</button></div>
+    <div class="crow"><button class="chip" onclick="setKi(461609490)">Bil 1 · 461 609 490</button><button class="chip" onclick="setKi(438441768)">Bil 2 · 438 441 768</button></div>
+    <div class="kres" id="kr" role="status" aria-live="polite"></div>
+  </div>
+  <div style="font-size:.72rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.625rem">10 tips</div>
+  <div class="tips">
+    <div class="tip"><span class="flag fb">Ghost</span><div class="tip-t">Sorter på «Publisert»</div><div class="tip-b">Ferske = first-mover. Gamle = forhandlingsmakt. Sammenlign FINN-koder.</div></div>
+    <div class="tip"><span class="flag fa">Tid</span><div class="tip-t">Sjekk «Sist oppdatert»</div><div class="tip-b">Lang tid siden oppdatering = selger har gitt opp prisen.</div></div>
+    <div class="tip"><span class="flag fr">Analyse</span><div class="tip-t">Sammenlign 5+ biler</div><div class="tip-b">Hva er medianen for 530d 2019 med 150–200k km? Det er riktig pris.</div></div>
+    <div class="tip"><span class="flag fg">Gratis</span><div class="tip-t">Vegvesen sjekk</div><div class="tip-b">EU-historikk med km-avlesninger. Helt gratis på vegvesen.no.</div></div>
+    <div class="tip"><span class="flag fg">Gratis</span><div class="tip-t">Sjekk heftelser</div><div class="tip-b">rettsstiftelser.brreg.no → reg.nr. Alltid gjør dette før bud.</div></div>
+    <div class="tip"><span class="flag fp">Kalkyle</span><div class="tip-t">Privat vs. forhandler</div><div class="tip-b">Forhandlergaranti 6–12 mnd ≈ 10–20k kr verdi. Regn inn.</div></div>
+    <div class="tip"><span class="flag fa">Betalt</span><div class="tip-t">CarVertical (~180 kr)</div><div class="tip-b">EU-km historikk, eierskifter, utenlandsk bakgrunn.</div></div>
+    <div class="tip"><span class="flag fb">Signal</span><div class="tip-t">Tell antall bilder</div><div class="tip-b">Få + lav vinkel + ingen interiørbilder = skjuler noe.</div></div>
+    <div class="tip"><span class="flag fg">Søk</span><div class="tip-t">Hele Norge, hent selv</div><div class="tip-b">Tog + kjøring tilbake = ~3 000 kr. Biltransport = ~6–9 000 kr.</div></div>
+    <div class="tip"><span class="flag fr">Ring</span><div class="tip-t">Aldri meld på FINN</div><div class="tip-b">«Hva er bakgrunnen for salget?» — svar du aldri får på chat.</div></div>
+  </div>
+  <hr class="sep">
+  <div style="font-size:.72rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.625rem">Marked · Mai 2026</div>
+  <div class="mkt">
+    <div class="mc mf"><div style="margin-bottom:6px"><span class="flag fb">Bil 1</span> <span class="flag fg">Garanti</span></div><div class="ml">📍 Bergen · Car4Sale</div><div class="mn">530d xDrive M-Sport Touring</div><div class="msp">2019 · 179k km · 265hk · 2 eiere</div><div class="mp">399 900</div><div class="mt2">+ ~3 500 egenregi = ~403 000</div></div>
+    <div class="mc mr"><div style="margin-bottom:6px"><span class="flag fr">Bil 2</span> <span class="flag fr">Tune</span></div><div class="ml">📍 Sævareid · Privat</div><div class="mn">530xd LCI M-Sport Sedan</div><div class="msp">2015 · 133k km · steg 2 · 12–15 mnd</div><div class="mp">364 434</div><div class="mt2">Motivert selger</div></div>
+    <div class="mc mg"><div style="margin-bottom:6px"><span class="flag fg">Lokal TRD</span></div><div class="ml">📍 Trondheim · Lysholm BMW</div><div class="mn">530e xDrive M-Sport Pano/HUD</div><div class="msp">2021 · 124k km · plug-in · garanti</div><div class="mp">429 900</div><div class="mt2">Ingen transport · nyere</div></div>
+    <div class="mc"><div style="margin-bottom:6px"><span class="flag fr">6 eiere</span></div><div class="ml">📍 Egersund · Privat</div><div class="mn">520d xDrive M-Sport Touring</div><div class="msp">2019 · 192k km · 190hk</div><div class="mp">384 532</div><div class="mt2">+ ~10 000 transport</div></div>
+  </div>
+  <div style="background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:1rem"><div style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:.625rem">Søkelenker</div><div style="display:flex;flex-direction:column;gap:.5rem;font-size:.8rem"><a href="https://www.finn.no/mobility/search/car?model=1.749.2131&fuel=2&year_from=2018&year_to=2020&price_from=300000&price_to=420000" target="_blank">→ 530d diesel 2018–2020 · 300–420k · hele Norge</a><a href="https://www.finn.no/mobility/search/car?model=1.749.2131&fuel=2&year_from=2018&year_to=2020&location=0.20016" target="_blank">→ 530 diesel 2018–2020 · Trøndelag</a><a href="https://rettsstiftelser.brreg.no/nb/oppslag/motorvogn/SV92486" target="_blank">→ Heftelser SV92486 (Bil 1)</a><a href="https://rettsstiftelser.brreg.no/nb/oppslag/motorvogn/VH68799" target="_blank">→ Heftelser VH68799 (Bil 2)</a></div></div>
+</section>
+
+<!-- MANUS -->
+<section id="s-manus" class="sec" aria-labelledby="h-manus" hidden>
+  <span class="eyebrow">Ferdige formuleringer</span>
+  <h1 class="ptitle" id="h-manus">Manus</h1>
+  <p class="psub">Bruk disse ord for ord — eller juster til din stil.</p>
+  <div style="display:flex;flex-direction:column;gap:.75rem">
+    <div style="background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:1rem"><div style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:2px">Åpningssamtale</div><div style="font-size:.7rem;color:var(--ink3);margin-bottom:.75rem">Ring — ikke meld · Ghost Notes + CORE</div><div class="qbox">«Hei, jeg så annonsen på FINN. Jeg er seriøst interessert — men før jeg booker visning har jeg et par tekniske spørsmål. Har du et minutt?»</div><p style="font-size:.77rem;color:var(--ink2);margin-top:.5rem">Vent på svaret. Tonen forteller deg alt om hastverk.</p></div>
+    <div style="background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:1rem"><div style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:2px">Etter visning</div><div class="qbox">«Jeg satte stor pris på visningen. Etter å ha vurdert [konkret svakhet], kan jeg gi deg [X kr] kontant. Budet gjelder til [dato].»</div></div>
+    <div style="background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:1rem"><div style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:2px">Når de sier «vi kan gå til Y»</div><div class="qbox">«Jeg setter pris på det. La meg tenke på det — kan jeg komme tilbake i morgen?»</div></div>
+    <div style="background:var(--sf);border:1px solid rgba(88,166,255,.25);border-radius:var(--r);padding:1rem"><div style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:2px">Bergen → Trondheim · Bil 1</div><div class="qbox">«Jeg bor i Trondheim. Egenregi koster ~3 500 kr. Med 179k km er 400k for mye. Jeg gir 355 000 og henter selv.»</div></div>
+    <div style="background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:1rem"><div style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:2px">Teknisk · Bil 1</div><div class="qbox">«Har dere kjørt dieselpartikkelfilter-diagnostikk? Og vet dere når siste EGR-rens ble gjort?»</div></div>
+    <div style="background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:1rem"><div style="font-size:.8rem;font-weight:500;color:var(--ink);margin-bottom:2px">Teknisk · Bil 2</div><div class="qbox">«Hvem har gjort tune-en, og finnes det EU-godkjenning etter steg 2? Uten papirer prises usikkerheten inn.»</div></div>
+    <div style="background:var(--gdim);border:1px solid rgba(63,185,80,.25);border-radius:var(--r);padding:1rem"><div style="font-size:.8rem;font-weight:500;color:var(--green);margin-bottom:.75rem">Walk-away</div><div class="qbox" style="border-color:var(--green)">«Jeg forstår at dere ikke kan gå lavere. Jeg kommer tilbake om jeg ikke finner noe annet.»</div><p style="font-size:.77rem;color:rgba(63,185,80,.8);margin-top:.5rem">Rolig, informert, alvorlig ment.</p></div>
+  </div>
+</section>
+
+<!-- ══ CLAUDE + LOGGBOK ══ -->
+<section id="s-ai" class="sec" aria-labelledby="h-ai" hidden>
+  <span class="eyebrow">AI-assistent · Powered by Claude</span>
+  <h1 class="ptitle" id="h-ai">Claude <em style="font-family:var(--fd);font-size:1rem;color:var(--ink3)">+ Loggbok</em></h1>
+
+  <!-- DUAL TABS -->
+  <div class="claude-tabs" role="tablist" aria-label="Claude-modus">
+    <button class="ctab on" id="tab-chat" role="tab" aria-selected="true" aria-controls="mode-chat" onclick="switchMode('chat')">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Chat
+    </button>
+    <button class="ctab" id="tab-logg" role="tab" aria-selected="false" aria-controls="mode-logg" onclick="switchMode('logg')">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Loggbok
+      <span class="nbadge" id="logbadge">0</span>
+    </button>
+  </div>
+
+  <!-- CHAT MODE -->
+  <div id="mode-chat" role="tabpanel">
+    <div class="chat-wrap">
+      <div class="chat-hdr">
+        <div class="chat-dot"></div>
+        <div class="chat-ti">Claude Sonnet</div>
+        <div class="chat-me" id="ctx-indicator">Grunnkontekst</div>
+      </div>
+      <div class="chat-msgs" id="cm" role="log" aria-live="polite" aria-label="Samtale">
+        <div class="msg ai">
+          <div class="av">C</div>
+          <div class="bbl">Hei! Jeg kjenner begge bilene og holder konteksten oppdatert fra Loggboken. Fortell meg ny info der, eller spør meg her. 🚗</div>
+        </div>
+      </div>
+      <div class="chat-chips">
+        <button class="chip" onclick="qa('Hva er de tekniske svakhetene på Bil 1 med 179k km?')">Bil 1 teknisk</button>
+        <button class="chip" onclick="qa('Hva er beste argument for å prute på Bil 2?')">Prute Bil 2</button>
+        <button class="chip" onclick="qa('Sammenlign de to bilene — hvilket er best kjøp?')">Sammenlign</button>
+        <button class="chip" onclick="qa('Hva bør jeg sjekke fysisk på visning?')">Visningssjekk</button>
+        <button class="chip" onclick="qa('Oppdater meg — hva er nåværende status på begge bilene?')">Status nå</button>
+      </div>
+      <div class="ci2row">
+        <textarea class="cin" id="ci2" placeholder="Spør om bilen, prisen, forhandling..." aria-label="Melding" rows="1" onkeydown="ckd(event)"></textarea>
+        <button class="csend" id="csb" onclick="send()" aria-label="Send">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="verdict-box">
-    <p class="v-label">Konklusjon</p>
-    <p class="v-price">Bud: 358 000 kr · Mål: 368 000 kr</p>
-    <p class="v-body">Bergen-bilen er god — 2 eiere, 530d (265 hk), M-Sport, fersk EU. Men du bor 680 km unna. Det er 4–8 000 kr i reell merkostnad. Markedet viser at tilsvarende 2021-modeller med garanti finnes for 430–480k. Det betyr at 2019-modellen til over 400k total er for dyrt. Prut med transportkostnaden som argument.</p>
+  <!-- LOGGBOK MODE -->
+  <div id="mode-logg" role="tabpanel" style="display:none">
+    <div class="log-wrap on">
+
+      <!-- LIVE KONTEKST -->
+      <div style="padding:.875rem 1.1rem;border-bottom:1px solid var(--ln)">
+        <div style="font-size:.75rem;font-weight:500;color:var(--ink);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem">
+          <span class="ctx-dot"></span> Live kontekst — Claude vet dette nå
+        </div>
+        <div class="ctx-items" id="ctx-display">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+
+      <!-- INPUT -->
+      <div class="log-input-area">
+        <div class="log-input-head">
+          <div class="log-input-title">Legg til ny informasjon</div>
+        </div>
+        <div class="log-type-row" id="ltype-row">
+          <button class="ltype sel" data-type="pris" onclick="selType(this)">💰 Pris</button>
+          <button class="ltype" data-type="visning" onclick="selType(this)">🔍 Visning</button>
+          <button class="ltype" data-type="forhandling" onclick="selType(this)">🤝 Forhandling</button>
+          <button class="ltype" data-type="teknisk" onclick="selType(this)">🔧 Teknisk</button>
+          <button class="ltype" data-type="nyBil" onclick="selType(this)">🚗 Ny bil</button>
+          <button class="ltype" data-type="annet" onclick="selType(this)">📝 Annet</button>
+        </div>
+        <textarea class="log-text" id="log-input" placeholder="F.eks. «Car4Sale gikk ned til 375 000 — hva gjør jeg nå?» eller «Fant en ny 530d i Trondheim, FINN 462000000, 140k km, 380k»" aria-label="Ny loggnotat"></textarea>
+        <div class="log-submit-row">
+          <div class="log-hint">Claude analyserer og oppdaterer konteksten automatisk.</div>
+          <button class="log-btn" onclick="addLog()" aria-label="Logg og analyser">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Logg det
+          </button>
+        </div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="log-timeline" id="log-timeline" role="log" aria-live="polite" aria-label="Loggbok">
+        <div class="log-empty" id="log-empty">Ingen logger ennå.<br>Legg inn ny informasjon ovenfor.</div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <p class="section-label">Det du sier til selger</p>
-  <ul class="signal-list">
-    <li><i class="ti ti-map-pin" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div><em>"Jeg er interessert, men bor i Trondheim. Biltransport til meg koster rundt 8 000 kr. Det betyr at totalprisen for meg er 408 000 kr. Med 179k km og ingen garanti er det for mye. Jeg kan gi 358 000 kr, og da henter jeg selv."</em></div></li>
-    <li><i class="ti ti-chart-bar" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Hvis de sier nei: <em>"Jeg har sett på 2021-modeller med garanti i Trondheim-området til 430k. Da er det ikke stor differanse."</em> — Du forankrer deg i et reelt alternativ, ikke bare et tall.</div></li>
-    <li><i class="ti ti-truck" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Wildcardspørsmål: <em>"Kan dere ordne levering til Trondheim, og hva koster det?"</em> — Noen ganger kjører forhandlere bilen gratis nordover hvis de har oppdrag der.</div></li>
-  </ul>
-
-  <hr class="divider">
-  <p class="section-label">Ghost Notes — hva sier markedet som Bil 1 ikke nevner?</p>
-  <ul class="signal-list">
-    <li><i class="ti ti-eye" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Bil 1 har <strong>ligget ute en stund</strong> (Car4Sale-annonser med 666 biler selger fort hvis prisen er riktig). At den fortsatt er tilgjengelig antyder at prisen er for høy relativt til markedet.</div></li>
-    <li><i class="ti ti-users" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>2 eiere på en 2019-modell er <strong>sterk plussfaktor</strong> — bruk dette til å rettferdiggjøre interesse, men ikke betale premium for det.</div></li>
-    <li><i class="ti ti-building" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Car4Sale er del av Bruktbilgruppen — de har <strong>systempris</strong>, ikke sentimental pris. De selger raskt fremfor å henge med én bil i 2 måneder.</div></li>
-  </ul>
-</div>
-
-</div>
+</main>
 
 <script>
-function switchTab(id) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  const order = ['marked','transport','konklusjon'];
-  document.querySelectorAll('.tab')[order.indexOf(id)].classList.add('active');
-  document.getElementById('panel-' + id).classList.add('active');
+// ─── STATE ───
+const state = {
+  bil1: { listepris:399900, bud:355000, maal:365000, garanti:'1 år (forhandlet)', km:179000, annonsealder:'3–4 mnd', extra:[] },
+  bil2: { listepris:364434, bud:315000, maal:330000, garanti:'ingen', km:133000, annonsealder:'12–15 mnd', extra:[] },
+  logs: [],
+  logCount: 0,
+  newLogs: 0
+};
+
+// ─── NAV ───
+function go(id){
+  document.querySelectorAll('.sec').forEach(s=>{s.classList.remove('on');s.setAttribute('hidden','')});
+  document.querySelectorAll('.nb').forEach(b=>{b.classList.remove('on');b.removeAttribute('aria-current')});
+  const s=document.getElementById('s-'+id),b=document.getElementById('nb-'+id);
+  if(s){s.classList.add('on');s.removeAttribute('hidden')}
+  if(b){b.classList.add('on');b.setAttribute('aria-current','page')}
+  if(id==='ai'){state.newLogs=0;updateNewDot()}
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('main').focus({preventScroll:true});
 }
+
+// ─── CLAUDE TABS ───
+function switchMode(m){
+  const chatTab=document.getElementById('tab-chat');
+  const loggTab=document.getElementById('tab-logg');
+  const chatPanel=document.getElementById('mode-chat');
+  const loggPanel=document.getElementById('mode-logg');
+  if(m==='chat'){
+    chatTab.classList.add('on');chatTab.setAttribute('aria-selected','true');
+    loggTab.classList.remove('on');loggTab.setAttribute('aria-selected','false');
+    chatPanel.style.display='block';loggPanel.style.display='none';
+  } else {
+    loggTab.classList.add('on');loggTab.setAttribute('aria-selected','true');
+    chatTab.classList.remove('on');chatTab.setAttribute('aria-selected','false');
+    loggPanel.style.display='block';chatPanel.style.display='none';
+    state.newLogs=0;updateNewDot();
+    renderCtxDisplay();
+  }
+}
+
+// ─── DETAIL CARDS ───
+function toggleDcard(el){
+  const card=el.closest('.dcard');
+  if(card.hasAttribute('open')) card.removeAttribute('open');
+  else card.setAttribute('open','');
+}
+
+// ─── FINN KODE ───
+const REF=464190850,RD=new Date('2026-05-19');
+function calcAge(){
+  const v=parseInt(document.getElementById('ki').value);
+  const r=document.getElementById('kr');
+  if(!v||isNaN(v)){r.textContent='Skriv inn en gyldig FINN-kode.';r.classList.add('on');return}
+  const diff=REF-v;
+  if(diff<0){r.innerHTML='⚡ Nyere enn referansen — veldig fersk annonse.';r.classList.add('on');return}
+  const d=Math.round(diff/50000);
+  const mn=['jan','feb','mar','apr','mai','jun','jul','aug','sep','okt','nov','des'];
+  const pd=new Date(RD);pd.setDate(pd.getDate()-d);
+  const ps=mn[pd.getMonth()]+' '+pd.getFullYear();
+  let t='',c='';
+  if(d<30){t='Fersk — normal.';c='var(--green)'}
+  else if(d<90){t='Normal for forhandler.';c='var(--amber)'}
+  else if(d<180){t='Over 3 mnd — forhandlingsrom åpner seg.';c='var(--amber)'}
+  else if(d<365){t='Gammel — tydelig forhandlingsmakt!';c='var(--red)'}
+  else{t='Svært gammel — desperat selger.';c='var(--red)'}
+  r.innerHTML=`<strong>Estimert publisert:</strong> ca. ${ps}<br><strong>Alder:</strong> ~${(d/30).toFixed(1)} mnd (${d} dager)<br><strong style="color:${c}">→ ${t}</strong>`;
+  r.classList.add('on');
+}
+function setKi(v){document.getElementById('ki').value=v;calcAge()}
+
+// ─── LOG TYPE SELECTOR ───
+let selLogType='pris';
+function selType(el){
+  document.querySelectorAll('.ltype').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  selLogType=el.dataset.type;
+}
+
+// ─── LOG ───
+const typeConfig={
+  pris:    {icon:'💰',color:'var(--green)',label:'Pris'},
+  visning: {icon:'🔍',color:'var(--blue)',label:'Visning'},
+  forhandling:{icon:'🤝',color:'var(--purple)',label:'Forhandling'},
+  teknisk: {icon:'🔧',color:'var(--amber)',label:'Teknisk'},
+  nyBil:   {icon:'🚗',color:'var(--teal,#39d353)',label:'Ny bil'},
+  annet:   {icon:'📝',color:'var(--ink2)',label:'Annet'}
+};
+
+async function addLog(){
+  const txt=document.getElementById('log-input').value.trim();
+  if(!txt) return;
+  document.getElementById('log-input').value='';
+  state.logCount++;
+  state.logs.unshift({id:state.logCount,type:selLogType,text:txt,time:nowStr(),aiReply:null});
+  renderTimeline();
+  updateBadge();
+  updateCtxPill();
+  // Animate latest
+  const entry=document.querySelector('.log-entry');
+  if(entry){entry.style.opacity='0';entry.style.transform='translateY(-8px)';requestAnimationFrame(()=>{entry.style.transition='opacity .3s,transform .3s';entry.style.opacity='1';entry.style.transform='none'})}
+  // Ask Claude for brief analysis
+  const logEl=document.querySelector(`.log-entry[data-id="${state.logCount}"]`);
+  if(logEl){const sp=logEl.querySelector('.le-ai');if(sp)sp.innerHTML='<span class="le-spinner">Analyserer...</span>'}
+  const analysis=await askClaude(`Ny logg (${typeConfig[selLogType].label}): "${txt}"\n\nGi en KORT analyse på 1–3 setninger: hva betyr dette for forhandlingen? Endres anbefalt bud? Konkret og direkte.`);
+  if(logEl){
+    const sp=logEl.querySelector('.le-ai');
+    if(sp){sp.innerHTML=fmt(analysis);state.logs[0].aiReply=analysis}
+  }
+  // Update new indicator if not on AI tab
+  const aiSec=document.getElementById('s-ai');
+  if(!aiSec.classList.contains('on')){state.newLogs++;updateNewDot()}
+  renderCtxDisplay();
+}
+
+function renderTimeline(){
+  const tl=document.getElementById('log-timeline');
+  const empty=document.getElementById('log-empty');
+  if(state.logs.length===0){if(empty)empty.style.display='block';return}
+  if(empty)empty.style.display='none';
+  tl.innerHTML='';
+  state.logs.forEach((l,i)=>{
+    const cfg=typeConfig[l.type]||typeConfig.annet;
+    const el=document.createElement('div');
+    el.className='log-entry';el.dataset.id=l.id;
+    el.innerHTML=`
+      ${i<state.logs.length-1?'<div class="log-line"></div>':''}
+      <div class="le-icon" style="background:${cfg.color}22;color:${cfg.color};border-color:${cfg.color}44">${cfg.icon}</div>
+      <div class="le-body">
+        <div class="le-header">
+          <span class="le-type" style="color:${cfg.color}">${cfg.label}</span>
+          <span class="le-time">${l.time}</span>
+        </div>
+        <div class="le-text">${fmt(l.text)}</div>
+        <div class="le-ai">${l.aiReply?fmt(l.aiReply):'<span class="le-spinner">Analyserer...</span>'}</div>
+      </div>`;
+    tl.appendChild(el);
+  });
+}
+
+// ─── CONTEXT DISPLAY ───
+function renderCtxDisplay(){
+  const d=document.getElementById('ctx-display');
+  if(!d) return;
+  const latest=state.logs.slice(0,3);
+  const items=[
+    {k:'Bil 1 bud',v:`${state.bil1.bud.toLocaleString('nb')} → ${state.bil1.maal.toLocaleString('nb')} kr`},
+    {k:'Bil 1 garanti',v:state.bil1.garanti,upd:true},
+    {k:'Bil 2 bud',v:`${state.bil2.bud.toLocaleString('nb')} → ${state.bil2.maal.toLocaleString('nb')} kr`},
+    {k:'Logger',v:`${state.logs.length} stk lagt til`},
+  ];
+  d.innerHTML=items.map(i=>`<div class="ctx-item${i.upd?' updated':''}"><span class="ci-key">${i.k}</span><span class="ci-val">${i.v}</span></div>`).join('');
+  if(latest.length>0){
+    d.innerHTML+=`<div style="margin-top:.5rem;font-size:.7rem;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em">Siste logger</div>`;
+    latest.forEach(l=>{const cfg=typeConfig[l.type]||typeConfig.annet;d.innerHTML+=`<div class="ctx-item"><span class="ci-key" style="color:${cfg.color}">${cfg.icon} ${cfg.label}</span><span class="ci-val" style="color:var(--ink2)">${l.text.slice(0,60)}${l.text.length>60?'…':''}</span></div>`});
+  }
+}
+
+function updateBadge(){
+  const b=document.getElementById('logbadge');
+  if(b){b.textContent=state.logs.length;b.classList.toggle('show',state.logs.length>0)}
+}
+function updateCtxPill(){
+  const p=document.getElementById('ctx-count');
+  if(p)p.textContent=state.logs.length+' '+( state.logs.length===1?'logg':'logger');
+}
+function updateNewDot(){
+  const d=document.getElementById('ainewdot');
+  if(d)d.style.display=state.newLogs>0?'block':'none';
+}
+function nowStr(){const n=new Date();return n.getHours()+':'+String(n.getMinutes()).padStart(2,'0')}
+
+// ─── AI CHAT ───
+function buildSys(){
+  let logTxt='';
+  if(state.logs.length>0){
+    logTxt='\n\nLOGGBOK (nyeste først):\n'+state.logs.slice(0,8).map((l,i)=>`${i+1}. [${typeConfig[l.type]?.label||l.type}] ${l.text}`).join('\n');
+  }
+  return `Du er BMW 530-ekspert og forhandlingsstrategist. Dato: 19. mai 2026.
+
+BIL 1 (FINN 461609490, reg. SV92486): BMW 530d xDrive M-Sport Touring 2019. Bergen, Car4Sale. 179 000 km, 265 hk, 2 eiere, norsk. Listepris 399 900 kr. Annonsert ~3–4 mnd. EU fersk mai 2026. 1 ÅR GARANTI FORHANDLET. Åpningsbud ${state.bil1.bud.toLocaleString('nb')}, mål ${state.bil1.maal.toLocaleString('nb')}. Kjøper i Trondheim → ~3 500 kr transport.
+
+BIL 2 (FINN 438441768, reg. VH68799): BMW 530xd LCI 2015, sedan. Sævareid, privat. 133 000 km, 258 hk. Steg 2 tune + downpipe. Stormskade nylakkert 2023. Listepris 364 434 kr. 12–15 mnd ute. Betaler for synlighet. EU t/sept 2027. Åpningsbud ${state.bil2.bud.toLocaleString('nb')}, mål ${state.bil2.maal.toLocaleString('nb')}.
+
+Prinsipper: Ghost Notes, Loss Function, CORE (Adaptive Tension), Time Horizon, Identity as Anchor.${logTxt}
+
+Svar alltid på norsk bokmål. Konkret, kortfattet, med tall og ferdige formuleringer.`;
+}
+
+let hist=[], loading=false;
+async function askClaude(prompt){
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,system:buildSys(),messages:[{role:'user',content:prompt}]})
+    });
+    const d=await res.json();
+    return d.content?.[0]?.text||'Kunne ikke analysere.';
+  }catch(e){return '⚠️ Nettverksfeil.'}
+}
+
+async function send(){
+  const inp=document.getElementById('ci2');
+  const msg=inp.value.trim();
+  if(!msg||loading) return;
+  inp.value='';inp.style.height='40px';
+  addMsg('u',msg);hist.push({role:'user',content:msg});
+  setLoad(true);addMsg('ai','…',true);
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:buildSys(),messages:hist})
+    });
+    const d=await res.json();
+    rmTyping();
+    const t=d.content?.[0]?.text||'Noe gikk galt.';
+    addMsg('ai',t);hist.push({role:'assistant',content:t});
+    updateCtxIndicator();
+  }catch(e){rmTyping();addMsg('ai','⚠️ Nettverksfeil.')}
+  setLoad(false);
+}
+
+function updateCtxIndicator(){
+  const el=document.getElementById('ctx-indicator');
+  if(el)el.textContent=state.logs.length>0?`+${state.logs.length} logger`:'Grunnkontekst';
+}
+
+function addMsg(role,text,typing=false){
+  const w=document.getElementById('cm');
+  const d=document.createElement('div');
+  d.className='msg '+role;if(typing)d.id='ct';
+  const av=document.createElement('div');av.className='av';av.setAttribute('aria-hidden','true');av.textContent=role==='ai'?'C':'S';
+  const b=document.createElement('div');b.className='bbl'+(typing?' typ':'');b.innerHTML=fmt(text);
+  d.appendChild(av);d.appendChild(b);w.appendChild(d);w.scrollTop=w.scrollHeight;
+}
+function fmt(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}
+function rmTyping(){const e=document.getElementById('ct');if(e)e.remove()}
+function setLoad(v){loading=v;document.getElementById('csb').disabled=v}
+function qa(q){document.getElementById('ci2').value=q;switchMode('chat');send()}
+function ckd(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}const t=e.target;t.style.height='40px';t.style.height=Math.min(t.scrollHeight,120)+'px'}
+
+// ─── INIT ───
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.sec').forEach(s=>{if(!s.classList.contains('on'))s.setAttribute('hidden','')});
+  renderCtxDisplay();
+});
 </script>
+</body>
+</html>

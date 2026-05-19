@@ -1,0 +1,226 @@
+
+<h2 class="sr-only">Markedsanalyse: BMW 530d 2019 — sammenligning for kjøper i Trondheim</h2>
+
+<style>
+.wrap { padding: 1.5rem 0 2rem; }
+.section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-secondary); margin: 0 0 0.75rem; }
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.tab { padding: 6px 16px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); background: var(--color-background-primary); font-size: 13px; cursor: pointer; color: var(--color-text-secondary); transition: all 0.15s; }
+.tab.active { background: var(--color-background-secondary); border-color: var(--color-border-primary); color: var(--color-text-primary); font-weight: 500; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+.comp-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem; }
+.comp-card.highlight { border: 2px solid #185FA5; }
+.comp-card.best { border: 2px solid #0F6E56; }
+.comp-card .c-loc { font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px; }
+.comp-card .c-name { font-size: 13px; font-weight: 500; margin: 0 0 2px; line-height: 1.4; }
+.comp-card .c-spec { font-size: 11px; color: var(--color-text-secondary); margin: 0 0 10px; }
+.comp-card .c-price { font-size: 20px; font-weight: 500; margin: 0 0 2px; }
+.comp-card .c-totalpris { font-size: 12px; color: var(--color-text-secondary); margin: 0; }
+
+.badge { display: inline-block; padding: 3px 9px; border-radius: var(--border-radius-md); font-size: 11px; font-weight: 500; margin-bottom: 8px; }
+.badge-blue { background: #E6F1FB; color: #185FA5; }
+.badge-teal { background: #E1F5EE; color: #0F6E56; }
+.badge-amber { background: #FAEEDA; color: #854F0B; }
+.badge-red { background: #FCEBEB; color: #A32D2D; }
+.badge-gray { background: var(--color-background-secondary); color: var(--color-text-secondary); }
+
+.divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.25rem 0; }
+.h3 { font-size: 14px; font-weight: 500; margin: 0 0 0.75rem; }
+.verdict-box { background: #E1F5EE; border-radius: var(--border-radius-lg); padding: 1.25rem; margin-bottom: 1.25rem; }
+.verdict-box .v-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #0F6E56; margin: 0 0 6px; }
+.verdict-box .v-price { font-size: 28px; font-weight: 500; color: #085041; margin: 0 0 6px; }
+.verdict-box .v-body { font-size: 13px; color: #0F6E56; line-height: 1.65; margin: 0; }
+
+.cost-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.cost-table td { padding: 8px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.cost-table td:last-child { text-align: right; font-weight: 500; }
+.cost-table tr.total td { font-weight: 500; font-size: 14px; border-bottom: none; padding-top: 12px; }
+.signal-list { margin: 0; padding: 0; list-style: none; }
+.signal-list li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 13px; line-height: 1.6; }
+.signal-list li:last-child { border-bottom: none; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.info-card { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+.info-card .i-label { font-size: 11px; color: var(--color-text-secondary); margin: 0 0 4px; }
+.info-card .i-val { font-size: 22px; font-weight: 500; margin: 0; }
+.info-card .i-sub { font-size: 12px; color: var(--color-text-secondary); margin: 2px 0 0; }
+</style>
+
+<div class="wrap">
+
+<p class="section-label">Markedsanalyse — BMW 530d 2019 · kjøper i Trondheim</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('marked')"><i class="ti ti-chart-bar" aria-hidden="true"></i> Marked</div>
+  <div class="tab" onclick="switchTab('transport')"><i class="ti ti-truck" aria-hidden="true"></i> Transport Bergen→TRD</div>
+  <div class="tab" onclick="switchTab('konklusjon')"><i class="ti ti-check" aria-hidden="true"></i> Konklusjon</div>
+</div>
+
+<div id="panel-marked" class="panel active">
+  <p class="h3">Sammenlignbare biler til salgs nå — hele Norge</p>
+
+  <div class="comp-grid">
+
+    <div class="comp-card highlight">
+      <span class="badge badge-blue">Bil 1 — aktuell</span>
+      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Bergen (Rådal/Lagunen)</p>
+      <p class="c-name">530d xDrive M-Sport Touring</p>
+      <p class="c-spec">2019 · 179 000 km · 265 hk · 2 eiere · EU nå tatt</p>
+      <p class="c-price">399 900 kr</p>
+      <p class="c-totalpris">+ transport ~8 000 kr = ~408 000 total</p>
+    </div>
+
+    <div class="comp-card">
+      <span class="badge badge-amber">Sammenligning</span>
+      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Egersund</p>
+      <p class="c-name">520d xDrive M-Sport Touring</p>
+      <p class="c-spec">2019 · 192 000 km · 190 hk · 6 eiere · EU 05/2027</p>
+      <p class="c-price">384 532 kr</p>
+      <p class="c-totalpris">+ transport ~10 000 kr = ~395 000 total</p>
+    </div>
+
+    <div class="comp-card">
+      <span class="badge badge-gray">Sammenligning</span>
+      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Trondheim-området</p>
+      <p class="c-name">530d xDrive 286hk/Skinn/Weba/HUD/360</p>
+      <p class="c-spec">2021 · 134 000 km · 286 hk · forhandler · garanti</p>
+      <p class="c-price">ca. 480 000 kr</p>
+      <p class="c-totalpris">Ingen transport · lavere km · nyere</p>
+    </div>
+
+    <div class="comp-card">
+      <span class="badge badge-gray">Sammenligning</span>
+      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Trondheim (Lysholm)</p>
+      <p class="c-name">530e xDrive M-Sport Pano/HUD/Krok</p>
+      <p class="c-spec">2021 · 124 000 km · plug-in hybrid · garanti</p>
+      <p class="c-price">429 900 kr</p>
+      <p class="c-totalpris">Ingen transport · hybrid · garanti inkl.</p>
+    </div>
+
+    <div class="comp-card">
+      <span class="badge badge-gray">Sammenligning</span>
+      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Sandvika</p>
+      <p class="c-name">530e xDrive M-Sport Pano/Skinn/Krok</p>
+      <p class="c-spec">2021 · 135 400 km · plug-in · 12 mnd garanti</p>
+      <p class="c-price">399 000 kr</p>
+      <p class="c-totalpris">+ transport ~12 000 kr = ~411 000 total</p>
+    </div>
+
+    <div class="comp-card">
+      <span class="badge badge-red">Obs — 6 eiere</span>
+      <p class="c-loc"><i class="ti ti-map-pin" aria-hidden="true"></i> Glitre / Numedal</p>
+      <p class="c-name">530d xDrive Touring M-Sport sen 2019</p>
+      <p class="c-spec">2019 · ukjent km · 6 eiere · forhandler</p>
+      <p class="c-price">se annonse</p>
+      <p class="c-totalpris">Lang kjøretur, men lokal levering mulig</p>
+    </div>
+
+  </div>
+
+  <p class="section-label">Markedsbilde oppsummert</p>
+  <ul class="signal-list">
+    <li><span style="flex-shrink:0"><span class="badge badge-blue">530d 2019</span></span><div>En <strong>530d 2019 med under 180k km og M-Sport</strong> ligger normalt i 370–440k kr på markedet. Bil 1 til 399 900 er i øvre del av normalt — ikke billig, men ikke overprisa.</div></li>
+    <li><span style="flex-shrink:0"><span class="badge badge-teal">2021-modeller</span></span><div>For 420–480k kr finnes det <strong>2021-modeller med lavere km og garanti</strong> — noen lokalt i Trondheim. Det er det reelle alternativet til Bil 1.</div></li>
+    <li><span style="flex-shrink:0"><span class="badge badge-amber">Eiere</span></span><div>Bil 1 har <strong>2 eiere</strong> — ekstremt godt for årsmodellen. Egersund-bilen har 6 eiere — det er et stort rødt flagg som rettferdiggjør lavere pris der.</div></li>
+    <li><span style="flex-shrink:0"><span class="badge badge-red">265 vs 190 hk</span></span><div>Bil 1 er <strong>530d (265 hk)</strong> — klart sterkere motor enn 520d (190 hk). Det gir 30–40k kr mer i markedsverdi isolert sett.</div></li>
+  </ul>
+</div>
+
+<div id="panel-transport" class="panel">
+  <p class="h3">Hva koster det å hente eller frakte bil fra Bergen til Trondheim?</p>
+
+  <div class="two-col" style="margin-bottom:1.25rem">
+    <div class="info-card">
+      <p class="i-label">Kjøreavstand</p>
+      <p class="i-val">~680 km</p>
+      <p class="i-sub">Ca. 7–8 timers kjøring</p>
+    </div>
+    <div class="info-card">
+      <p class="i-label">Reisetid tur/retur</p>
+      <p class="i-val">1–2 dager</p>
+      <p class="i-sub">Avhengig av om du overnatter</p>
+    </div>
+  </div>
+
+  <p class="section-label">Alternativ 1 — du reiser selv og kjører hjem</p>
+  <table class="cost-table">
+    <tr><td>Tog Trondheim–Bergen (tur)</td><td>600–900 kr</td></tr>
+    <tr><td>Drivstoff Bergen–Trondheim (ca. 65L diesel × 18 kr)</td><td>~1 200 kr</td></tr>
+    <tr><td>Bomavgifter E39/E16 tur/retur ca.</td><td>~600 kr</td></tr>
+    <tr><td>Mat og overnatting (valgfritt)</td><td>0–1 500 kr</td></tr>
+    <tr class="total"><td>Totalt egenregi</td><td>~2 500–4 200 kr</td></tr>
+  </table>
+
+  <hr class="divider">
+  <p class="section-label">Alternativ 2 — biltransport (Gire / Autotransport)</p>
+  <table class="cost-table">
+    <tr><td>Biltransport Bergen→Trondheim (Gire-tjeneste e.l.)</td><td>6 000–10 000 kr</td></tr>
+    <tr><td>Du gjør ingenting</td><td>0 kr tid</td></tr>
+    <tr class="total"><td>Totalt biltransport</td><td>~8 000 kr snitt</td></tr>
+  </table>
+
+  <hr class="divider">
+  <p class="section-label">Alternativ 3 — be Car4Sale levere</p>
+  <ul class="signal-list">
+    <li><i class="ti ti-bulb" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Car4Sale er landsdekkende med 666+ annonser. De leverer ofte bil mot et kjøretilskudd. <strong>Spør om de kan levere til Trondheim, og be om at dette inkluderes i prisen</strong> — eller brukes som argument for å presse ned totalpris.</div></li>
+    <li><i class="ti ti-message" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Forhandlingsteknikk: <em>"Jeg bor i Trondheim. Kan dere hjelpe med levering, eller reflektere dette i prisen?"</em> — gir deg en ny forhandlingsdimensjon utover kun pris.</div></li>
+  </ul>
+
+  <div class="verdict-box" style="background:#E6F1FB">
+    <p class="v-label" style="color:#185FA5">Time Horizon — transportkostnad er reell totalpris</p>
+    <p class="v-price" style="color:#0C447C;font-size:22px">399 900 + ~5 000 kr = ~405 000 kr totalt</p>
+    <p class="v-body" style="color:#185FA5">Egenregi (tog + kjøring) er billigst: ca. 3 000–4 500 kr. Biltransport: ~8 000 kr. Uansett — Bergen-bilen er IKKE like billig som listeprisen tilsier. Dette er et forhandlingsargument.</p>
+  </div>
+</div>
+
+<div id="panel-konklusjon" class="panel">
+  <p class="h3">Samlet vurdering — er Bil 1 riktig kjøp?</p>
+
+  <div class="two-col" style="margin-bottom:1.25rem">
+    <div class="info-card">
+      <p class="i-label">Listepris + transport (snitt)</p>
+      <p class="i-val">~405 000 kr</p>
+      <p class="i-sub">Reell totalkostnad for Trondheim-kjøper</p>
+    </div>
+    <div class="info-card">
+      <p class="i-label">Hva du bør betale</p>
+      <p class="i-val" style="color:#0F6E56">360–370 000 kr</p>
+      <p class="i-sub">Inkl. at de leverer, ELLER du tar transport selv</p>
+    </div>
+  </div>
+
+  <div class="verdict-box">
+    <p class="v-label">Konklusjon</p>
+    <p class="v-price">Bud: 358 000 kr · Mål: 368 000 kr</p>
+    <p class="v-body">Bergen-bilen er god — 2 eiere, 530d (265 hk), M-Sport, fersk EU. Men du bor 680 km unna. Det er 4–8 000 kr i reell merkostnad. Markedet viser at tilsvarende 2021-modeller med garanti finnes for 430–480k. Det betyr at 2019-modellen til over 400k total er for dyrt. Prut med transportkostnaden som argument.</p>
+  </div>
+
+  <p class="section-label">Det du sier til selger</p>
+  <ul class="signal-list">
+    <li><i class="ti ti-map-pin" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div><em>"Jeg er interessert, men bor i Trondheim. Biltransport til meg koster rundt 8 000 kr. Det betyr at totalprisen for meg er 408 000 kr. Med 179k km og ingen garanti er det for mye. Jeg kan gi 358 000 kr, og da henter jeg selv."</em></div></li>
+    <li><i class="ti ti-chart-bar" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Hvis de sier nei: <em>"Jeg har sett på 2021-modeller med garanti i Trondheim-området til 430k. Da er det ikke stor differanse."</em> — Du forankrer deg i et reelt alternativ, ikke bare et tall.</div></li>
+    <li><i class="ti ti-truck" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Wildcardspørsmål: <em>"Kan dere ordne levering til Trondheim, og hva koster det?"</em> — Noen ganger kjører forhandlere bilen gratis nordover hvis de har oppdrag der.</div></li>
+  </ul>
+
+  <hr class="divider">
+  <p class="section-label">Ghost Notes — hva sier markedet som Bil 1 ikke nevner?</p>
+  <ul class="signal-list">
+    <li><i class="ti ti-eye" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Bil 1 har <strong>ligget ute en stund</strong> (Car4Sale-annonser med 666 biler selger fort hvis prisen er riktig). At den fortsatt er tilgjengelig antyder at prisen er for høy relativt til markedet.</div></li>
+    <li><i class="ti ti-users" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>2 eiere på en 2019-modell er <strong>sterk plussfaktor</strong> — bruk dette til å rettferdiggjøre interesse, men ikke betale premium for det.</div></li>
+    <li><i class="ti ti-building" style="color:var(--color-text-secondary);flex-shrink:0" aria-hidden="true"></i><div>Car4Sale er del av Bruktbilgruppen — de har <strong>systempris</strong>, ikke sentimental pris. De selger raskt fremfor å henge med én bil i 2 måneder.</div></li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  const order = ['marked','transport','konklusjon'];
+  document.querySelectorAll('.tab')[order.indexOf(id)].classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+</script>
